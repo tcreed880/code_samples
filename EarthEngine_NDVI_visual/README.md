@@ -1,45 +1,24 @@
-NDVI Time Series and Seasonal Composites for Weld County, CO
-This project contains a Google Earth Engine script that analyzes vegetation dynamics in Weld County, Colorado using remote sensing data from Landsat 8 and MODIS.
+## NDVI Time Series and Seasonal Composites for Weld County, CO using Landsat and MODIS
+To open in the Google Earth Engine console, click this link:
+https://code.earthengine.google.com/9f881bc5c30825a8fce969f7b381b5a3?accept_repo=users%2Fstacemaples%2FSGC-EE101
 
-Overview
-The script performs two key analyses:
+This Google Earth Engine script analyzes vegetation dynamics in Weld County, Colorado, with a focus on the USDA Limited Irrigation Research Farm (LIRF). It performs two main tasks:
 
-NDVI Time Series (2018–2024)
-Extracts NDVI values from Landsat 8 imagery at a point of interest (LIRF - Limited Irrigation Research Farm in Weld County).
+### Landsat 8 Time Series (Point Analysis):
+Computes and visualizes a time series of NDVI values from 2018 to 2024 for the 30-meter Landsat pixel centered on LIRF.
 
-A time series plot is generated showing vegetation trends from 2018 through 2024.
+### MODIS NDVI Seasonal Composite GIF (County-Scale Visualization):
+Creates a seasonal NDVI GIF from 16-day MODIS composites across Weld County. Each frame represents the median NDVI for specific days of the year (e.g., Jan 1, Jan 17, Feb 2, etc.). A black square marker highlights the LIRF location.
 
-MODIS NDVI Seasonal Cycle Animation
-
-Uses MODIS 16-day NDVI composites (1 km resolution) from 2018–2024.
-
-Produces a median NDVI composite for each 16-day period of the year across all years.
-
-Renders an animated GIF of the seasonal NDVI cycle across Weld County.
-
-Includes a visual marker indicating the LIRF location.
-
-Key Features
-NDVI calculated from Landsat 8 (B5 - NIR and B4 - Red)
-
-MODIS data filtered and composited by Day-of-Year (DOY)
-
-Marker overlay for geographic reference (LIRF location)
-
-Visualization settings optimized for vegetation greenness
-
-How to Use
+How to Use:
 Open Google Earth Engine Code Editor
-
 Paste the script into a new GEE project.
-
 Run the script to generate:
 
-An NDVI time series chart
+1. An NDVI time series plot
+2. A thumbnail animation (GIF) visualizing seasonal NDVI patterns in Weld County
 
-A thumbnail animation (GIF) visualizing seasonal NDVI patterns
-
-Data Sources
+Data Sources:
 Landsat 8 TOA Reflectance: LANDSAT/LC08/C02/T1_TOA
 
 MODIS NDVI (16-day composite): MODIS/006/MOD13A2
