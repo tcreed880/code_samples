@@ -22,11 +22,13 @@ atorvastatin_tablets AS (
    `bigquery-public-data.cms_synthetic_patient_data_omop.concept` c
    ON ds.drug_concept_id = c.concept_id
  WHERE
-   ds.ingredient_concept_id = 1545958  -- standard concept ID for atorvastatin
+   -- 1545958 is atorvastatin ID
+   ds.ingredient_concept_id = 1545958
    AND ds.drug_concept_id IN (
      SELECT drug_concept_id FROM single_ingredient_drugs
    )
-   AND LOWER(c.concept_name) LIKE '%tablet%'  -- optional: only keep tablets
+   -- only looking at tablets
+   AND LOWER(c.concept_name) LIKE '%tablet%'
 )
 
 
