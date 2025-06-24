@@ -1,12 +1,12 @@
 -- joins covariates, low_adherence/late_refiller, readmission data into one table
 
--- Step 1: Cohort of statin users (already in readmittance)
+-- group of statin users (already in readmittance)
 WITH cohort AS (
  SELECT person_id FROM `mimic-iv-459422.statin_analysis.readmittance`
 ),
 
 
--- Step 2: First atorvastatin fill per patient
+-- first atorvastatin fill per patient
 first_fill AS (
  SELECT
    person_id,
@@ -22,7 +22,7 @@ first_fill AS (
 ),
 
 
--- Step 3: Demographics with labels and correct age
+-- demographics with labels and correct age
 demographics AS (
  SELECT
    p.person_id,
@@ -41,12 +41,13 @@ demographics AS (
  LEFT JOIN
    `bigquery-public-data.cms_synthetic_patient_data_omop.concept` e ON p.ethnicity_concept_id = e.concept_id
 ),
--- Step 3: Comorbidities
+-- adding in the diabetes, ckd, heart disesase comorbidities
 comorbidities AS (
  SELECT
    person_id,
-   MAX(CASE WHEN condition_concept_id = 201826 THEN 1 ELSE 0 END) AS has_diabetes,       -- Type 2 diabetes
-   MAX(CASE WHEN condition_concept_id = 443597 THEN 1 ELSE 0 END) AS has_ckd,            -- CKD stage 3
+   -- max method aggregates patients with multiple 1s and 0s into one value per person
+   MAX(CASE WHEN condition_concept_id = 201826 THEN 1 ELSE 0 END) AS has_diabetes,       
+   MAX(CASE WHEN condition_concept_id = 443597 THEN 1 ELSE 0 END) AS has_ckd,          
    MAX(CASE WHEN condition_concept_id IN (315295, 42872402) THEN 1 ELSE 0 END) AS has_heart_disease
  FROM
    `bigquery-public-data.cms_synthetic_patient_data_omop.condition_occurrence`
@@ -55,7 +56,7 @@ comorbidities AS (
 ),
 
 
--- Step 4: Polypharmacy (unique drugs per patient)
+-- gets number of unqiue meds used by patients
 polypharmacy AS (
  SELECT
    person_id,
