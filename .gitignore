@@ -1,6 +1,23 @@
-# macOS system files
+n# macOS system files
 .DS_Store
 
 # Jupyter notebook checkpoints
 **/.ipynb_checkpoints/
+
+# R session files
+*.Rhistory
+*.RData
+*.Rproj.user/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.env/
+.venv/
+env/
+venv/
+
+
 
