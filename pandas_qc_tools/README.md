@@ -1,6 +1,6 @@
 ### Pandas QC Tools
 
-This notebook is a reference collection of functions and tips for cleaning datasets using pandas. This is not designed to be run on a specific dataset, just provide snippets for common cleaning tasks.
+This notebook is a reference collection of functions and tips for cleaning datasets using pandas. This is not designed to be run end-to-end on a specific dataset, just provide snippets for common cleaning tasks.
 
 Sections:
 - Large dataset processing with chunks  
